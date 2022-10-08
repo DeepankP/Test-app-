@@ -1,0 +1,125 @@
+package com.example.dp
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.dp.ui.theme.DPTheme
+
+class MainActivity : ComponentActivity() {
+ override fun onCreate(savedInstanceState: Bundle?) {
+ super.onCreate(savedInstanceState)
+ setContent {
+ DPTheme {
+ // A surface container using the 'background' color from the theme
+ Surface(
+ modifier = Modifier.fillMaxSize(),
+ color = MaterialTheme.colors.background
+ ) {
+
+ }
+
+
+ }
+ }
+ }
+}
+
+@Composable
+fun ShowResumeCard(){
+ Surface(modifier = Modifier
+ .fillMaxWidth()
+ .fillMaxHeight()){
+ Card(modifier = Modifier
+ .height(390.dp)
+ .width(200.dp)
+ .padding(12.dp), elevation = 4.dp , shape = RoundedCornerShape(
+ corner = CornerSize(15.dp))) {
+ Column(modifier = Modifier.height(300.dp),
+ verticalArrangement = Arrangement.Top,
+ horizontalAlignment = Alignment.CenterHorizontally
+
+ ) {
+ ShowImage()
+ Text(text = "Deepank Prakash",
+ style = MaterialTheme.typography.h4,
+ color = MaterialTheme.colors.primary)
+ Text(text = "SRM University '24",
+ modifier = Modifier.padding(3.dp))
+ Text(text = "Darksidehomie",
+ modifier = Modifier.padding(3.dp))
+ Button(onClick = { /*TODO*/ },
+ modifier = Modifier.padding(3.dp)) {
+ Text(text = "Sheeeeeesh", style = MaterialTheme.typography.button)
+ }
+ }
+ }
+
+
+ }
+}
+
+@Composable
+fun Content(){
+ Box(modifier = Modifier
+ .padding(5.dp)
+ .fillMaxHeight()
+ .fillMaxWidth()){
+ Surface(modifier = Modifier
+ .padding(3.dp)
+ .fillMaxWidth()
+ .fillMaxHeight(),
+ shape = RoundedCornerShape(corner = CornerSize(6.dp))) {
+ Projectlist()
+
+ }
+
+ }
+
+
+}
+
+@Composable
+fun Projectlist(){
+ LazyColumn{
+ items(count = 5){
+ index -> Text(text = "Project $index") 
+ }
+ }
+}
+
+@Composable
+fun ShowImage(){
+ Surface(modifier = Modifier
+ .size(150.dp)
+ .padding(5.dp),
+ shape = CircleShape) {
+ Image(
+ painter = painterResource(id = R.drawable.goku),
+ contentDescription = "goku",
+ contentScale = ContentScale.Crop,
+ modifier = Modifier.size(135.dp))
+ }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+ DPTheme{
+ShowResumeCard()
+ }
+}
